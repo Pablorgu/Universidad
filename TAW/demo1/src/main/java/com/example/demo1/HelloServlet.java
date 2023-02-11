@@ -2,6 +2,8 @@ package com.example.demo1;
 
 import java.io.*;
 
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -13,32 +15,47 @@ public class HelloServlet extends HttpServlet {
         message = "Hello World!";
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        this.procesar(request, response);
-    }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        this.procesar(request, response);
-    }
-    protected void procesar(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String str;
+        double op1, op2, resultado = 0.0;
+        char operacion;
         response.setContentType("text/html");
-
-        String parametro1, parametro2, mensaje;
-
-        parametro1 = request.getParameter("param1");
-        parametro2= request.getParameter("param2");
-
-        // Hello
         PrintWriter out = response.getWriter();
+
+        str = request.getParameter("op1");
+        op1= Double.parseDouble(str);
+
+        str = request.getParameter("op2");
+        op2= Double.parseDouble(str);
+
+        str = request.getParameter("operacion");
+        operacion = str.charAt(0);
+        //Hello
         out.println("<html><body>");
-        if (parametro1.equals(parametro2)) {
-            mensaje = "son iguales";
-        } else {
-            mensaje = "son diferentes";
+
+        switch (operacion) {
+            case '+':
+                resultado = op1 + op2;
+                break;
+            case '-':
+                resultado = op1 - op2;
+                break;
+            case '*':
+                resultado = op1 * op2;
+                break;
+            case '/':
+                resultado = op1 / op2;
+                break;
+            default:
+                System.out.println("Ningun operador seleccionado");
         }
-        out.println("<h1> LOS DOS PARAMETROS RECIBIDOS SON: </h1>");
-        out.println("<h1>" + mensaje + "</h1>");
-        out.println("</body></html>");
+
+        request.setAttribute("result", resultado);
+
+        RequestDispatcher rd = request.getRequestDispatcher("calculadora.jsp");
+        rd.forward(request,response);
+
     }
 
     public void destroy() {
