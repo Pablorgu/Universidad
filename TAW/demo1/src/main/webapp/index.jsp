@@ -2,8 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formulario</title>
+    <title>index</title>
 </head>
 <body>
+<a href="calculadora.html">Calculadora</a>
 </body>
 </html>
