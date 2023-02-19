@@ -1,10 +1,10 @@
-package es.taw.demospring;
+package es.taw.demospringboot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoSpringApplicationTests {
+class DemoSpringBootApplicationTests {
 
     @Test
     void contextLoads() {

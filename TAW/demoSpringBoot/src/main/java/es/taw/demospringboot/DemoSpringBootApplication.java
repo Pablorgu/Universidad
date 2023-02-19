@@ -1,13 +1,13 @@
-package es.taw.demospring;
+package es.taw.demospringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoSpringApplication {
+public class DemoSpringBootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoSpringApplication.class, args);
+        SpringApplication.run(DemoSpringBootApplication.class, args);
     }
 
 }
