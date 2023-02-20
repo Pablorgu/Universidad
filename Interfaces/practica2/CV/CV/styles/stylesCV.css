@@ -1,2 +1,30 @@
 @import url(commonStyles.css);
 
+img {
+    float: left;
+}
+
+.education {
+    clear: left;
+}
+
+.title {
+    background-color: aqua;
+}
+
+span {
+    float: right;
+}
+
+ dt {
+    font-weight:bold;
+}
+
+dd{
+    padding-bottom: 10px;
+    margin-left: 5px;
+}
+
+dl{
+    padding-top: 10px;
+}
