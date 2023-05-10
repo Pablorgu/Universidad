@@ -1,20 +1,20 @@
 ----------------------------------------------------------------
-Mon Feb 20 16:25:57 CET 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0186-6f6e-7c7a-00000d58f4e0 
-on database directory /Users/guzman/workspace/@TEACHING/TecAppWeb/curso 2022_23/sampleTAWSpring/db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@77556fd 
-Loaded from file:/Users/guzman/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+Sun Apr 16 01:01:54 CEST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0187-8727-54cc-000010f63800 
+on database directory C:\Users\pablo\Documents\UNIV AUX\Universidad\TAW\segunda version\db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@512ddf17 
+Loaded from file:/C:/Users/pablo/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Amazon.com Inc.
-java.runtime.version=11.0.11+9-LTS
-user.dir=/Users/guzman/workspace/@TEACHING/TecAppWeb/curso 2022_23/sampleTAWSpring
-os.name=Mac OS X
-os.arch=x86_64
-os.version=11.5
+java.runtime.version=11.0.18+10-LTS
+user.dir=C:\Users\pablo\Documents\UNIV AUX\Universidad\TAW\segunda version
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Mon Feb 20 16:27:11 CET 2023:
-Shutting down instance a816c00e-0186-6f6e-7c7a-00000d58f4e0 on database directory /Users/guzman/workspace/@TEACHING/TecAppWeb/curso 2022_23/sampleTAWSpring/db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@77556fd 
-Mon Feb 20 16:27:11 CET 2023 Thread[Thread-18,5,main] Cleanup action starting
+Sun Apr 16 01:03:01 CEST 2023:
+Shutting down instance a816c00e-0187-8727-54cc-000010f63800 on database directory C:\Users\pablo\Documents\UNIV AUX\Universidad\TAW\segunda version\db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@512ddf17 
+Sun Apr 16 01:03:01 CEST 2023 Thread[Thread-18,5,main] Cleanup action starting
 ERROR XBM0I: Directory db cannot be removed.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -29,13 +29,12 @@ ERROR XBM0I: Directory db cannot be removed.
 	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
 	at org.apache.derby.jdbc.InternalDriver$LoginCallable.call(Unknown Source)
 	at org.apache.derby.jdbc.InternalDriver$LoginCallable.call(Unknown Source)
-	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
 Cleanup action completed
-Mon Feb 20 16:27:11 CET 2023 Thread[Thread-18,5,main] Cleanup action starting
+Sun Apr 16 01:03:01 CEST 2023 Thread[Thread-18,5,main] Cleanup action starting
 ERROR XBM0I: Directory db cannot be removed.
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
 	at org.apache.derby.iapi.error.StandardException.newException(Unknown Source)
@@ -50,8 +49,7 @@ ERROR XBM0I: Directory db cannot be removed.
 	at org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
 	at org.apache.derby.jdbc.InternalDriver$LoginCallable.call(Unknown Source)
 	at org.apache.derby.jdbc.InternalDriver$LoginCallable.call(Unknown Source)
-	at java.base/java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:264)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)

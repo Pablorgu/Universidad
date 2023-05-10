@@ -13,6 +13,7 @@
     <title>Title</title>
 </head>
 <body>
+<jsp:include page="cabecera.jsp" />
 <h1>Datos del cliente:</h1>
 <form:form action="/guardar" modelAttribute="cliente" method="post">
     <form:hidden path="customerId"/>

@@ -1,4 +1,3 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page import="es.taw.sampletaw.entity.Customer" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
@@ -21,16 +20,10 @@
 <jsp:include page="cabecera.jsp" />
 <h1>Listado de clientes</h1>
 
-<form:form action="/customer/filtrar" method="post" modelAttribute="filtro">
-    Buscar por: <br/>
-    Contiene: <form:input path="texto" />
-    Supermecado:
-        <form:select multiple="true" path="zipSupermercados" size="6">
-            <form:option value="" label="-----" />
-            <form:options items="${supermercados}" itemLabel="zipCode" itemValue="zipCode" />
-        </form:select>
+<form action="/customer/filtrar" method="post">
+    Buscar por: <input type="text" name="filtro">
 <button>Filtrar</button>
-</form:form>
+</form>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -61,7 +54,5 @@
     }
 %>
 </table border="1">
-
-<a href="/customer/nuevo" >Nuevo cliente...</a>
 </body>
 </html>
