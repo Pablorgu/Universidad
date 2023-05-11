@@ -64,3 +64,10 @@ coeficientesDetIMC <- map_dbl(VariablesInd,~ coeficienteDet(datos, datos$IMC, da
 AjusteLinear <- function(df, y, x) {
   list(x=x, y=y, mod=lm(str_c(y, "~", x), df))
 }
+
+dibujarModelos <- function(mod) {
+  jpeg(str_c("c:/data/plots/grafico_", mod$x, ".jpeg"))
+  plot(dfMec[[mod$x]], dfMec[[mod$y]])
+  abline(mod$mod)
+  dev.off()
+}
