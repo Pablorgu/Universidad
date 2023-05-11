@@ -54,8 +54,13 @@ coeficienteDet <- function(df, y, x) {
 
 #Ahora calculare el coeficiente de regresión entre la variable de respuesta IMC
 #y cada una de las variables predictoras
-coeficientesRegIMC <- map_dbl(VariablesInd,~ coeficienteReg(datos, datos$IMC, datos[[.]]))
+coeficientesRegIMC <- map_dbl(VariablesInd,~ coeficienteReg(datos, datos$IMC, datos[[.x]]))
 
 #Y hare lo mismo con el coeficiente de determinacion
-coeficientesDetIMC <- map_dbl(VariablesInd,~ coeficienteDet(datos, datos$IMC, datos[[.]]))
+coeficientesDetIMC <- map_dbl(VariablesInd,~ coeficienteDet(datos, datos$IMC, datos[[.x]]))
 
+#EJERCICIO 6
+#Para empezar creare una funcion que calcule el ajuste lineal entre la variable dependiente y la independiente
+AjusteLinear <- function(df, y, x) {
+  list(x=x, y=y, mod=lm(str_c(y, "~", x), df))
+}
