@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="af00fdbf-7176-46e2-add2-a28f2db76968" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="com.haulmont.jpb.JpaRepository" />
+        <option value="Interface" />
+        <option value="Jsp File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="290shOz3KnDyqHzmwlyCNlQKSct" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JPA.DatabaseSchemaImportDialog": "5e663df4-6cec-4b9a-b1f6-d5b23da216e8",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/pablo/Documents/UNIV AUX/Universidad/TAW/EJERCICIOS NODE/ExpressSequelize/ExpressSequelize",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.17210683",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "669eab2d0e4ee144f1a6321cacb328da",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pablo\Documents\UNIV AUX\Universidad\TAW\segunda version\src\main\webapp\WEB-INF\view" />
+    </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="" />
+      <recent name="es.taw.sampletaw.entity" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SampleTawApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sampleTAW" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="es.taw.sampletaw.SampleTawApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="af00fdbf-7176-46e2-add2-a28f2db76968" name="Changes" comment="" />
+      <created>1652261458847</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652261458847</updated>
+      <workItem from="1652261462076" duration="6202000" />
+      <workItem from="1652288004402" duration="34000" />
+      <workItem from="1652288103692" duration="149000" />
+      <workItem from="1652288401143" duration="2032000" />
+      <workItem from="1676403858363" duration="118000" />
+      <workItem from="1676454708755" duration="7938000" />
+      <workItem from="1676479618950" duration="206000" />
+      <workItem from="1676480041000" duration="584000" />
+      <workItem from="1676481286187" duration="12000" />
+      <workItem from="1676487529285" duration="312000" />
+      <workItem from="1676887970165" duration="8979000" />
+      <workItem from="1681212259905" duration="5107000" />
+      <workItem from="1681400481231" duration="950000" />
+      <workItem from="1681487189197" duration="9835000" />
+      <workItem from="1681552057775" duration="7571000" />
+      <workItem from="1681562033779" duration="7704000" />
+      <workItem from="1681573953337" duration="11211000" />
+      <workItem from="1681586608925" duration="7048000" />
+      <workItem from="1681599195736" duration="57000" />
+      <workItem from="1681599266574" duration="515000" />
+      <workItem from="1681639489396" duration="13551000" />
+      <workItem from="1682026044826" duration="2000" />
+      <workItem from="1682343713565" duration="5000" />
+      <workItem from="1682355177593" duration="9000" />
+      <workItem from="1682355211945" duration="4000" />
+      <workItem from="1683301674508" duration="873000" />
+      <workItem from="1683323263246" duration="783000" />
+      <workItem from="1683390406448" duration="4258000" />
+      <workItem from="1683459383437" duration="24000" />
+      <workItem from="1683459629324" duration="2000" />
+      <workItem from="1683472074253" duration="1000" />
+      <workItem from="1683484557100" duration="41000" />
+      <workItem from="1683891147120" duration="1640000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
