@@ -22,7 +22,7 @@
           <td> <%= cliente.NAME %> </td>
           <td> <%= cliente.ZIP %> </td>
           <td> <%= cliente.DISCOUNT_CODE %> </td>
-          <td><a href="/<%= cliente.CUSTOMER_ID %>">Editar</a> </td>
+          <td><a href="/editar/<%= cliente.CUSTOMER_ID %>">Editar</a> </td>
           <td><a href="/borrar/<%= cliente.CUSTOMER_ID %>">Borrar</a> </td>
         </tr>
       <% }); %>

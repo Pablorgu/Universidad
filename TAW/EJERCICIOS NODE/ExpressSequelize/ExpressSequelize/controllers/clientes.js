@@ -38,7 +38,7 @@ controller.editarCliente = async function (req, res, next) {
 // Guardar cliente //////////////////////////////////////////////////////////////////////////////////////////////////////
 controller.guardarCliente = async function (req, res, next) {
     try {
-        if (typeof req.body.CUSTOMER_ID != "undefined") {
+        if (req.body.CUSTOMER_ID != "") {
             const cliente = await models.CUSTOMER.findOne({
                 where: {
                     CUSTOMER_ID: req.body.CUSTOMER_ID
@@ -87,7 +87,9 @@ controller.guardarCliente = async function (req, res, next) {
 // Nuevo cliente //////////////////////////////////////////////////////////////////////////////////////////////////////
 controller.nuevoCliente = async function (req, res, next) {
     const supermercados = await models.MICRO_MARKET.findAll();
-    res.render("cliente", {supermercados: supermercados})
+    const descuentos = await models.DISCOUNT_CODE.findAll();
+    const cliente = false;
+    res.render("cliente", {supermercados: supermercados, cliente: cliente, descuentos: descuentos})
 };
 
 // Borrar cliente //////////////////////////////////////////////////////////////////////////////////////////////////////
