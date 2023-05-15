@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1></h1>
+  <form action="/filtrar" method="post" >
+    <input type="text" name="filtro" value="<%= filtro%>" size="30" maxlength="30">
+    <td colspan="2"><input value="Filtrar" type="submit"> </td>
+  </form>
+    <table>
+      <tr>
+        <th>EMAIL</th>
+        <th>NAME</th>
+        <th>MICROMARKET</th>
+        <th>DISCOUNT_CODE</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% clientes.forEach(function(cliente) { %>
+        <tr>
+          <td> <%= cliente.EMAIL %> </td>
+          <td> <%= cliente.NAME %> </td>
+          <td> <%= cliente.ZIP %> </td>
+          <td> <%= cliente.DISCOUNT_CODE %> </td>
+          <td><a href="/editar/<%=cliente.CUSTOMER_ID%>">Editar</a> </td>
+          <td><a href="/borrar/<%=cliente.CUSTOMER_ID%>">Borrar</a> </td>
+        </tr>
+      <% }); %>
+    </table>
+  <a href="/nuevo">Nuevo ...</a>
+  </body>
+</html>

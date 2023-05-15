@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1></h1>
+<table>
+    <tr>
+        <th>NUMERO DE ORDEN</th>
+        <th>PRODUCTO</th>
+        <th>CANTIDAD</th>
+        <th>COSTE DE VENTA</th>
+        <th>FECHA DE COMPRA</th>
+        <th>COMPAÑIA DE COMPRA</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <% pedidos.forEach(function(pedido) { %>
+        <%productos.forEach(function(producto) {
+            if(pedido.PRODUCT_ID === producto.PRODUCT_ID){%>
+         %>
+        <tr>
+            <td> <%= pedido.ORDER_NUM %> </td>
+            <td> <%= producto.DESCRIPTION %> </td>
+            <td> <%= pedido.QUANTITY %> </td>
+            <td> <%= pedido.SHIPPING_COST %> </td>
+            <td> <%= pedido.SHIPPING_DATE%></td>
+            <td> <%= pedido.FREIGHT_COMPANY%></td>
+        </tr>
+    <%      }
+        });
+    }); %>
+</table>
+</body>
+</html>
