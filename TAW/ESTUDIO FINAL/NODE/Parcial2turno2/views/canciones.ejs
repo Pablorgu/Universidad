@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1>Lista de canciones del album: <%=album.Title%></h1>
+    <table border="1">
+        <tr>
+            <th>TrackId</th>
+            <th>Name</th>
+            <th>Composer</th>
+            <th>Milliseconds</th>
+            <th>Bytes</th>
+            <th>UnitPrice</th>
+            <th>Editar</th>
+        </tr>
+        <%canciones.forEach(function(cancion) {%>
+        <tr>
+            <td> <%= cancion.TrackId %> </td>
+            <td><a href="/genero/<%=cancion.GenreId%>"><%= cancion.Name %></a>  </td>
+            <td> <%= cancion.Composer %> </td>
+            <td> <%= cancion.Milliseconds %> </td>
+            <td> <%= cancion.Bytes %> </td>
+            <td> <%= cancion.UnitPrice %> </td>
+            <td><a href="/editar/<%=cancion.TrackId%>" >Editar</a> </td>
+        </tr>
+        <% });%>
+    </table>
+</body>
+</html>

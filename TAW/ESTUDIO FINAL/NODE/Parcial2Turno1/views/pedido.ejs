@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1>Datos del pedido</h1>
+    <form method="post" action="/guardar">
+        <table>
+            <input type="hidden" name="INVOICEID" value="<%=pedido ? pedido.InvoiceId: ''%>" size="25" maxlength="25">
+            <input type="hidden" name="CUSTOMERID" value="<%=pedido ? pedido.CustomerId: ''%>" size="25" maxlength="25">
+            <input type="hidden" name="INVOICEDATE" value="<%=pedido ? pedido.InvoiceDate: ''%>" size="25" maxlength="25">
+            <input type="hidden" name="COUNTRY" value="<%=pedido ? pedido.BillingCountry: ''%>" size="25" maxlength="25">
+            <input type="hidden" name="POSTALCODE" value="<%=pedido ? pedido.BillingPostalCode: ''%>" size="25" maxlength="25">
+            <tr>
+                <td>
+                    Billing Address:
+                </td>
+                <td>
+                    <input type="text" name="ADDRESS" value="<%=pedido ? pedido.BillingAddress: ''%>" size="25" maxlength="25">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Billing City:
+                </td>
+                <td>
+                    <input type="text" name="CITY" value="<%=pedido ? pedido.BillingCity: ''%>" size="25" maxlength="25">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Billing State:
+                </td>
+                <td>
+                    <input type="text" name="STATE" value="<%=pedido ? pedido.BillingState: ''%>" size="25" maxlength="25">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Total:
+                </td>
+                <td>
+                    <input type="text" name="TOTAL" value="<%=pedido ? pedido.Total: ''%>" size="25" maxlength="25">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input value="Guardar" type="submit"> </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

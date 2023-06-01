@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1>Selecciona el album que desea consultar:</h1>
+    <form  action="/enviar" method="post">
+        Nombre del album:
+        <select name="AlbumId">
+        <% albums.forEach(function(album) {
+                var selected= "";
+        %>
+            <option value="<%= album.AlbumId %>" label="<%=album.Title%>" <%=selected%>/>
+        <%});%>
+        </select>
+        <input value="Enviar" type="submit">
+    </form>
+</body>
+</html>

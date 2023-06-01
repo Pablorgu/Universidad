@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1></h1>
+
+<form action="/guardar" method="post">
+    <h1>Datos de la canción</h1>
+    <input type="hidden" name="TrackId" value="<%= cancion.TrackId %>">
+    <input type="hidden" name="AlbumId" value="<%= cancion.AlbumId %>">
+    <input type="hidden" name="MediaTypeId" value="<%= cancion.MediaTypeId %>">
+    <input type="hidden" name="GenreId" value="<%= cancion.GenreId %>">
+    <input type="hidden" name="UnitPrice" value="<%= cancion.UnitPrice %>">
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td> <input type="text" name="Name" value="<%= cancion.Name %>" size="30" maxlength="30"> </td>
+        </tr>
+        <tr>
+            <td>Composer: </td>
+            <td> <input type="text" name="Composer" value="<%= cancion.Composer %>" size="40" maxlength="40">  </td>
+        </tr>
+        <tr>
+            <td>Milliseconds: </td>
+            <td> <input type="number" name="Milliseconds" value="<%= cancion.Milliseconds %>" size="30" maxlength="30"></td>
+        </tr>
+        <tr>
+            <td>Bytes: </td>
+            <td> <input type="number" name="Bytes" value="<%= cancion.Bytes %>" size="30" maxlength="30">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input value="Guardar" type="submit"> </td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>
