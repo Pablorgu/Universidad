@@ -18,10 +18,19 @@
     <h1>Datos de la titulacion</h1>
     <form:form action="/guardar" modelAttribute="titulacion" method="post">
         <table border="1">
+            <form:hidden path="idtitulacion"/>
            <tr>
                <td>NOMBRE:</td>
-               <td><form:input path="nombre" size="25" maxlength="25"/> </td>
+               <td><form:input path="nombre" size="50" maxlength="50"/> </td>
            </tr>
+            <tr>
+                <td>CENTRO: </td>
+                <td>${titulacion.centroByCentro.nombre}</td>
+            </tr>
+            <tr>
+                <td>NIVEL: </td>
+                <td>${titulacion.nivelEstudiosByNivel.nombre}</td>
+            </tr>
             <tr>
                 <td>ASIGNATURA:</td>
                 <td><form:checkboxes path="asignaturaByAsignatura" items="${asignaturas}" itemLabel="nombre" delimiter="<br>"/> </td>

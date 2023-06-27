@@ -18,7 +18,7 @@
         <table>
             <tr>
                 <td>
-                    <form:radiobuttons path="idcentro" items="${centros}" itemValue="idcentro" itemLabel="nombre" /><br/>
+                    <form:radiobuttons path="idcentro" items="${centros}" itemValue="idcentro" itemLabel="nombre" delimiter="<br>" /><br/>
                 </td>
             </tr>
         </table>

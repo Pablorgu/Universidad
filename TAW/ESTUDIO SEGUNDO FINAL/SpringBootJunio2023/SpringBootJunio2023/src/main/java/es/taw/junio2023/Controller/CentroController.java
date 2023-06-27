@@ -49,7 +49,7 @@ public class CentroController {
     @GetMapping("/editar")
     public String doEditar(@RequestParam("idtitulacion") Short id, Model model) {
         TitulacionEntity titulacion = titulacionRepository.findById(id).orElse(null);
-        List<AsignaturaEntity> asignaturas = asignaturaRepository.findAll();
+        List<AsignaturaEntity> asignaturas = asignaturaRepository.buscarasignaturas();
         model.addAttribute("titulacion", titulacion);
         model.addAttribute("asignaturas", asignaturas);
         return "editarTitulacion";
@@ -58,9 +58,25 @@ public class CentroController {
     @PostMapping("/guardar")
     public String doGuardar(@ModelAttribute("titulacion") TitulacionEntity titulacionform, Model model) {
         TitulacionEntity titulacion = titulacionRepository.findById(titulacionform.getIdtitulacion()).orElse(null);
+        List<AsignaturaEntity> asignaturas = asignaturaRepository.findAll();
         titulacion.setNombre(titulacionform.getNombre());
+        TitulacionEntity aux = titulacion;
+        titulacion.setAsignaturaByAsignatura(titulacion.getAsignaturaByAsignatura());
+        for(AsignaturaEntity a: asignaturas) {
+            if(aux.getAsignaturaByAsignatura().contains(a) && !titulacionform.getAsignaturaByAsignatura().contains(a)){
+                List<TitulacionEntity> titulacionesactualizadas = a.getTitulacionByIdtitulacion();
+                titulacionesactualizadas.remove(titulacion);
+                a.settitulacionByIdtitulacion(titulacionesactualizadas);
+                asignaturaRepository.save(a);
+            } else if(!aux.getAsignaturaByAsignatura().contains(a) && titulacionform.getAsignaturaByAsignatura().contains(a)){
+                List<TitulacionEntity> titulacionesactualizadas = a.getTitulacionByIdtitulacion();
+                titulacionesactualizadas.add(titulacion);
+                a.settitulacionByIdtitulacion(titulacionesactualizadas);
+                asignaturaRepository.save(a);
+            }
+        }
         titulacionRepository.save(titulacion);
-        return "redirect:/titulaciones?idtitulacion=" + titulacionform.getIdtitulacion();
+        return "redirect:/titulaciones?idcentro=" + titulacion.getCentroByCentro().getIdcentro();
     }
 
 

@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface AsignaturaRepository extends JpaRepository<AsignaturaEntity, Integer> {
-    @Query("select a from AsignaturaEntity a order by a.curso, a.cuatrimestre")
+public interface AsignaturaRepository extends JpaRepository<AsignaturaEntity, Short> {
+    @Query("select a from AsignaturaEntity a order by a.curso asc , a.cuatrimestre asc ")
     public List<AsignaturaEntity> buscarasignaturas();
 }
