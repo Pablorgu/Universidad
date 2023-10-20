@@ -1,0 +1,9 @@
+INSERT INTO dbo.Provincias
+VALUES(AL,	ALMERÍA),
+(CA, CÁDIZ),
+(CO, CÓRDOBA),
+(GR, GRANADA),
+(H, HUELVA),
+(J, JAÉN),
+(MA, MÁLAGA),
+(SE, SEVILLA);
