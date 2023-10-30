@@ -1,0 +1,70 @@
+1;AL;Albufera de Adra;7;1
+2;AL;Cabo de Gata-Níjar;4350;14
+3;AL;Desierto de Tabernas;2141;4
+4;AL;Resto Provincia de Almeria;141060;522
+5;AL;Sierra Alhamilla;3657;3
+6;AL;Sierra María-Los Velez;15918;47
+7;AL;Sierra Nevada (P Nac);32191;59
+8;CA;Bahía de Cádiz;106;1
+9;CA;Complejo Endorreico de Espera;16;3
+10;CA;Complejo Endorreico de Puerto Real;32;1
+11;CA;De la Breña y Marismas del Barbate;2176;2
+12;CA;Doñana (P Nat);689;1
+13;CA;Dunas de San Antón;91;1
+14;CA;La Barrosa;126;1
+15;CA;Laguna de Medina;139;3
+16;CA;Los Alcornocales;60664;156
+17;CA;Resto Provincia de Cadiz;60932;303
+18;CA;Sierra de Grazalema;15230;62
+19;CO;Fuente Agria;80;1
+20;CO;La Sierrezuela;442;1
+21;CO;Laguna Amarga;68;1
+22;CO;Laguna de los Jarales;7;1
+23;CO;Laguna de Zóñar;71;1
+24;CO;Laguna del Tíscar;86;1
+25;CO;Los Villares;484;1
+26;CO;Resto Provincia de Cordoba;135712;518
+27;CO;Sierra de Cardeña y Montoro;14763;40
+28;CO;Sierra de Hornachuelos;11912;24
+29;CO;Sierras Subbéticas;1095;6
+30;GR;Dehesa del Generalife;568;4
+31;GR;Resto Provincia de Granada;129119;164
+32;GR;Sierra de Baza;33727;66
+33;GR;Sierra de Castril;6118;3
+34;GR;Sierra de Huétor;11611;25
+35;GR;Sierra Nevada (P Nac);85081;86
+36;GR;Sierras de Tejeda, Almijara y Alhama;16405;5
+37;H;Doñana (P Nac);57850;25
+38;H;Laguna de El Portil;3110;2
+39;H;Lagunas de Palos y las Madres;88;1
+40;H;Peñas de Aroche;979;4
+41;H;Resto Provincia de H;248677;1792
+42;H;Sierra de Aracena y Picos de Aroche;27306;150
+43;H;Sierra Pelada y Rivera del Aserrador;13588;29
+44;J;Cascada de Cimbarra;650;1
+45;J;Despeñaperros;8577;5
+46;J;Monte La Sierra;2720;1
+47;J;Resto Provincia de Jaen;134297;248
+48;J;Sierra de Andújar;15779;17
+49;J;Sierra Mágina;11412;14
+50;J;Sierras de Cazorla, Segura y Las Villas;142426;134
+51;MA;Dehesa del Mercadillo;170;1
+52;MA;Desfiladero de los Gaitanes;1907;3
+53;MA;Laguna de Fuente de Piedra;1450;7
+54;MA;Los Alcornocales;11125;15
+55;MA;Los Reales de Sierra Bermeja;7915;3
+56;MA;Montes de Málaga;4813;1
+57;MA;Resto Provincia de Malaga;85216;1225
+58;MA;Sierra Crestellina;190;1
+59;MA;Sierra de Gracia;42;1
+60;MA;Sierra de Grazalema;2420;5
+61;MA;Sierra de las Nieves;16595;17
+62;MA;Sierras de Tejeda, Almijara y Alhama;16148;8
+63;MA;Torcal de Antequera;2094;5
+64;SE;Dehesa de Abajo;616;1
+65;SE;Doñana;10029;10
+66;SE;Embalse de Cordobilla;157;1
+67;SE;Embalse de Malpasillo;433;4
+68;SE;Peñón de Zaframagón;220;1
+69;SE;Resto Provincia de Sevilla;64468;514
+70;SE;Sierra Norte de Sevilla;23359;61
