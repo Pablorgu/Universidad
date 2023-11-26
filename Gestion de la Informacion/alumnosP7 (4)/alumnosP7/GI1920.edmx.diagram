@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="58578d3bc9f94266b7fcca2cc24f9aeb" Name="Diagram1">
+        <EntityTypeShape EntityType="GI1920Model.tLaboratorio" Width="1.5" PointX="8" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GI1920Model.tPaciente" Width="1.5" PointX="8" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GI1920Model.tPermiso" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GI1920Model.tProvincia" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GI1920Model.tReceta" Width="1.5" PointX="10.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GI1920Model.tRol" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GI1920Model.tUsuario" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="GI1920Model.FK_tLaboratorio_tProvincia" ManuallyRouted="false" />
+        <AssociationConnector Association="GI1920Model.FK_tReceta_tLaboratorio" ManuallyRouted="false" />
+        <AssociationConnector Association="GI1920Model.FK_tPaciente_tProvincia" ManuallyRouted="false" />
+        <AssociationConnector Association="GI1920Model.FK_tReceta_tPaciente" ManuallyRouted="false" />
+        <AssociationConnector Association="GI1920Model.FK_tPermiso_tRol" ManuallyRouted="false" />
+        <AssociationConnector Association="GI1920Model.FK_tUsuario_tRol" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

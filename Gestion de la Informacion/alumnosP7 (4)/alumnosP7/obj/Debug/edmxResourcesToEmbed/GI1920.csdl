@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GI1920Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tLaboratorio">
+    <Key>
+      <PropertyRef Name="CIF" />
+    </Key>
+    <Property Name="CIF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Poblacion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Provincia" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tProvincia" Relationship="Self.FK_tLaboratorio_tProvincia" FromRole="tLaboratorio" ToRole="tProvincia" />
+    <NavigationProperty Name="tReceta" Relationship="Self.FK_tReceta_tLaboratorio" FromRole="tLaboratorio" ToRole="tReceta" />
+  </EntityType>
+  <EntityType Name="tPaciente">
+    <Key>
+      <PropertyRef Name="NIF" />
+    </Key>
+    <Property Name="NIF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumSeguro" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Direccion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Poblacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Provincia" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CodigoPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tProvincia" Relationship="Self.FK_tPaciente_tProvincia" FromRole="tPaciente" ToRole="tProvincia" />
+    <NavigationProperty Name="tReceta" Relationship="Self.FK_tReceta_tPaciente" FromRole="tPaciente" ToRole="tReceta" />
+  </EntityType>
+  <EntityType Name="tPermiso">
+    <Key>
+      <PropertyRef Name="rolName" />
+      <PropertyRef Name="pantalla" />
+    </Key>
+    <Property Name="rolName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pantalla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acceso" Type="Boolean" Nullable="false" />
+    <Property Name="insertar" Type="Boolean" Nullable="false" />
+    <Property Name="modificar" Type="Boolean" Nullable="false" />
+    <Property Name="borrar" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tRol" Relationship="Self.FK_tPermiso_tRol" FromRole="tPermiso" ToRole="tRol" />
+  </EntityType>
+  <EntityType Name="tProvincia">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tLaboratorio" Relationship="Self.FK_tLaboratorio_tProvincia" FromRole="tProvincia" ToRole="tLaboratorio" />
+    <NavigationProperty Name="tPaciente" Relationship="Self.FK_tPaciente_tProvincia" FromRole="tProvincia" ToRole="tPaciente" />
+  </EntityType>
+  <EntityType Name="tReceta">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NIF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PRODUCTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LABORATORIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UNIDADES" Type="Int32" Nullable="false" />
+    <Property Name="ENTREGADA" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tLaboratorio" Relationship="Self.FK_tReceta_tLaboratorio" FromRole="tReceta" ToRole="tLaboratorio" />
+    <NavigationProperty Name="tPaciente" Relationship="Self.FK_tReceta_tPaciente" FromRole="tReceta" ToRole="tPaciente" />
+  </EntityType>
+  <EntityType Name="tRol">
+    <Key>
+      <PropertyRef Name="rolName" />
+    </Key>
+    <Property Name="rolName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rolDes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="admin" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tPermiso" Relationship="Self.FK_tPermiso_tRol" FromRole="tRol" ToRole="tPermiso" />
+    <NavigationProperty Name="tUsuario" Relationship="Self.FK_tUsuario_tRol" FromRole="tRol" ToRole="tUsuario" />
+  </EntityType>
+  <EntityType Name="tUsuario">
+    <Key>
+      <PropertyRef Name="nif" />
+    </Key>
+    <Property Name="nif" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rolName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tRol" Relationship="Self.FK_tUsuario_tRol" FromRole="tUsuario" ToRole="tRol" />
+  </EntityType>
+  <Association Name="FK_tLaboratorio_tProvincia">
+    <End Role="tProvincia" Type="Self.tProvincia" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tLaboratorio" Type="Self.tLaboratorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tProvincia">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="tLaboratorio">
+        <PropertyRef Name="Provincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tReceta_tLaboratorio">
+    <End Role="tLaboratorio" Type="Self.tLaboratorio" Multiplicity="1" />
+    <End Role="tReceta" Type="Self.tReceta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tLaboratorio">
+        <PropertyRef Name="CIF" />
+      </Principal>
+      <Dependent Role="tReceta">
+        <PropertyRef Name="LABORATORIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPaciente_tProvincia">
+    <End Role="tProvincia" Type="Self.tProvincia" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tPaciente" Type="Self.tPaciente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tProvincia">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="tPaciente">
+        <PropertyRef Name="Provincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tReceta_tPaciente">
+    <End Role="tPaciente" Type="Self.tPaciente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tReceta" Type="Self.tReceta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tPaciente">
+        <PropertyRef Name="NIF" />
+      </Principal>
+      <Dependent Role="tReceta">
+        <PropertyRef Name="NIF" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPermiso_tRol">
+    <End Role="tRol" Type="Self.tRol" Multiplicity="1" />
+    <End Role="tPermiso" Type="Self.tPermiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRol">
+        <PropertyRef Name="rolName" />
+      </Principal>
+      <Dependent Role="tPermiso">
+        <PropertyRef Name="rolName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tUsuario_tRol">
+    <End Role="tRol" Type="Self.tRol" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tUsuario" Type="Self.tUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRol">
+        <PropertyRef Name="rolName" />
+      </Principal>
+      <Dependent Role="tUsuario">
+        <PropertyRef Name="rolName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GI1920Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tLaboratorio" EntityType="Self.tLaboratorio" />
+    <EntitySet Name="tPaciente" EntityType="Self.tPaciente" />
+    <EntitySet Name="tPermiso" EntityType="Self.tPermiso" />
+    <EntitySet Name="tProvincia" EntityType="Self.tProvincia" />
+    <EntitySet Name="tReceta" EntityType="Self.tReceta" />
+    <EntitySet Name="tRol" EntityType="Self.tRol" />
+    <EntitySet Name="tUsuario" EntityType="Self.tUsuario" />
+    <AssociationSet Name="FK_tLaboratorio_tProvincia" Association="Self.FK_tLaboratorio_tProvincia">
+      <End Role="tProvincia" EntitySet="tProvincia" />
+      <End Role="tLaboratorio" EntitySet="tLaboratorio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tReceta_tLaboratorio" Association="Self.FK_tReceta_tLaboratorio">
+      <End Role="tLaboratorio" EntitySet="tLaboratorio" />
+      <End Role="tReceta" EntitySet="tReceta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPaciente_tProvincia" Association="Self.FK_tPaciente_tProvincia">
+      <End Role="tProvincia" EntitySet="tProvincia" />
+      <End Role="tPaciente" EntitySet="tPaciente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tReceta_tPaciente" Association="Self.FK_tReceta_tPaciente">
+      <End Role="tPaciente" EntitySet="tPaciente" />
+      <End Role="tReceta" EntitySet="tReceta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPermiso_tRol" Association="Self.FK_tPermiso_tRol">
+      <End Role="tRol" EntitySet="tRol" />
+      <End Role="tPermiso" EntitySet="tPermiso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tUsuario_tRol" Association="Self.FK_tUsuario_tRol">
+      <End Role="tRol" EntitySet="tRol" />
+      <End Role="tUsuario" EntitySet="tUsuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

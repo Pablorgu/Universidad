@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GI1920ModelStoreContainer" CdmEntityContainer="GI1920Entities">
+    <EntitySetMapping Name="tLaboratorio">
+      <EntityTypeMapping TypeName="GI1920Model.tLaboratorio">
+        <MappingFragment StoreEntitySet="tLaboratorio">
+          <ScalarProperty Name="CIF" ColumnName="CIF" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Poblacion" ColumnName="Poblacion" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPaciente">
+      <EntityTypeMapping TypeName="GI1920Model.tPaciente">
+        <MappingFragment StoreEntitySet="tPaciente">
+          <ScalarProperty Name="NIF" ColumnName="NIF" />
+          <ScalarProperty Name="NumSeguro" ColumnName="NumSeguro" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Poblacion" ColumnName="Poblacion" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPermiso">
+      <EntityTypeMapping TypeName="GI1920Model.tPermiso">
+        <MappingFragment StoreEntitySet="tPermiso">
+          <ScalarProperty Name="rolName" ColumnName="rolName" />
+          <ScalarProperty Name="pantalla" ColumnName="pantalla" />
+          <ScalarProperty Name="acceso" ColumnName="acceso" />
+          <ScalarProperty Name="insertar" ColumnName="insertar" />
+          <ScalarProperty Name="modificar" ColumnName="modificar" />
+          <ScalarProperty Name="borrar" ColumnName="borrar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tProvincia">
+      <EntityTypeMapping TypeName="GI1920Model.tProvincia">
+        <MappingFragment StoreEntitySet="tProvincia">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tReceta">
+      <EntityTypeMapping TypeName="GI1920Model.tReceta">
+        <MappingFragment StoreEntitySet="tReceta">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NIF" ColumnName="NIF" />
+          <ScalarProperty Name="PRODUCTO" ColumnName="PRODUCTO" />
+          <ScalarProperty Name="LABORATORIO" ColumnName="LABORATORIO" />
+          <ScalarProperty Name="UNIDADES" ColumnName="UNIDADES" />
+          <ScalarProperty Name="ENTREGADA" ColumnName="ENTREGADA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRol">
+      <EntityTypeMapping TypeName="GI1920Model.tRol">
+        <MappingFragment StoreEntitySet="tRol">
+          <ScalarProperty Name="rolName" ColumnName="rolName" />
+          <ScalarProperty Name="rolDes" ColumnName="rolDes" />
+          <ScalarProperty Name="admin" ColumnName="admin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tUsuario">
+      <EntityTypeMapping TypeName="GI1920Model.tUsuario">
+        <MappingFragment StoreEntitySet="tUsuario">
+          <ScalarProperty Name="nif" ColumnName="nif" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="rolName" ColumnName="rolName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

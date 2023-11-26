@@ -1,0 +1,51 @@
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\bin\Debug\farmacia.exe.config
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\bin\Debug\farmacia.exe
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\bin\Debug\farmacia.pdb
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\bin\Debug\EntityFramework.dll
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\bin\Debug\EntityFramework.xml
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.csprojResolveAssemblyReference.cache
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.FLogin.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.FPacientes.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.FRecetas.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.FRoles.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.FUsuarios.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.Properties.Resources.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.csproj.GenerateResource.Cache
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.exe
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP6\obj\Debug\farmacia.pdb
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\bin\Debug\farmacia.exe
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\bin\Debug\EntityFramework.dll
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\bin\Debug\farmacia.exe.config
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\bin\Debug\EntityFramework.xml
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.FLogin.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.FPacientes.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.FRecetas.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.FRoles.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.FUsuarios.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.Properties.Resources.resources
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.csproj.GenerateResource.Cache
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.exe
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.pdb
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\bin\Debug\farmacia.pdb
+C:\Users\alumno\Documents\Visual Studio 2013\Projects\alumnosP7\obj\Debug\farmacia.csprojResolveAssemblyReference.cache
+C:\Users\alumno\Downloads\alumnosP7\bin\Debug\farmacia.exe.config
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.exe
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.pdb
+C:\Users\alumno\Downloads\alumnosP7\bin\Debug\farmacia.exe
+C:\Users\alumno\Downloads\alumnosP7\bin\Debug\farmacia.pdb
+C:\Users\alumno\Downloads\alumnosP7\bin\Debug\EntityFramework.dll
+C:\Users\alumno\Downloads\alumnosP7\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alumno\Downloads\alumnosP7\bin\Debug\EntityFramework.xml
+C:\Users\alumno\Downloads\alumnosP7\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.csprojResolveAssemblyReference.cache
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.FLogin.resources
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.FPacientes.resources
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.FRecetas.resources
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.FRoles.resources
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.FUsuarios.resources
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.Properties.Resources.resources
+C:\Users\alumno\Downloads\alumnosP7\obj\Debug\farmacia.csproj.GenerateResource.Cache
