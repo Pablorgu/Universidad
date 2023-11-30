@@ -5,6 +5,8 @@ torreta.
 
 package net.agsh.towerdefense.strats;
 
+import net.agsh.towerdefense.Config;
+import net.agsh.towerdefense.Game;
 import net.agsh.towerdefense.Tower;
 
 import java.util.ArrayList;
@@ -87,8 +89,9 @@ public class TowerBuyer {
     }
     public static float Valuetower(Tower tower, float maxrange, float maxdamage, float maxcooldown, float maxdispersion) {
 
-        float rangeScore = tower.getRange()/maxrange * WEIGHT_RANGE;
-        float damageScore = tower.getDamage()/maxdamage * WEIGHT_DAMAGE;
+        Game g = Game.getInstance();
+        float rangeScore = tower.getRange()-g.getParam(Config.Parameter.TOWER_RADIUS_MIN)/(g.getParam(Config.Parameter.TOWER_RADIUS_MAX) - g.getParam(Config.Parameter.TOWER_RADIUS_MIN)) * WEIGHT_RANGE;
+        float damageScore = tower.getDamage()-g.getParam(Config.Parameter.TOWER_DAMAGE_MIN)/(g.getParam(Config.Parameter.TOWER_DAMAGE_MAX)-g.getParam(Config.Parameter.TOWER_DAMAGE_MIN)) * WEIGHT_DAMAGE;
         float cooldownScore = (1 - (tower.getCooldown()/maxcooldown)) * WEIGHT_COOLDOWN; // Invierto el cooldown para que menor tiempo sea mejor
         float dispersionScore = (1 - (tower.getDispersion()/maxdispersion)) * WEIGHT_DISPERSION; // Invierto la dispersión para que menor dispersión sea mejor
 
