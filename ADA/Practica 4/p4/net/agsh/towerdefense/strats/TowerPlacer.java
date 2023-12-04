@@ -10,22 +10,21 @@ import net.agsh.towerdefense.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 
 public class TowerPlacer {
 
     //Calcula el valor para una casilla(node) dada.
     public static float getNodeValue(MapNode node, Map map) {
-        float maxRange = Game.getInstance().getParam(Config.Parameter.TOWER_RANGE_MAX);
-        int inRangeNodesCount = 0;
+        int maxRange = (int) Game.getInstance().getParam(Config.Parameter.TOWER_RANGE_MAX);
+        int walkableNodesInRange = 0;
 
         for (MapNode n : map.getWalkableNodes()) {
             if (node.getPosition().distance(n.getPosition()) < maxRange) {
-                inRangeNodesCount++;
+                walkableNodesInRange++;
             }
         }
 
-        return (float) inRangeNodesCount;
+        return  walkableNodesInRange;
     }
 
     //Dadas dos posiciones y los radios de dos objetos devuelve si existe colision entre los mismos.
@@ -47,11 +46,12 @@ public class TowerPlacer {
         // Ordeno los nodos caminables según su valor.
         setNodeValues(map.getNodesList(), map);
         Collections.sort(nodes, (node1, node2) -> Float.compare(node2.getValue(2), node1.getValue(2)));
+        Collections.sort(towers, Comparator.comparingDouble(Tower::getRadius));
 
         for (Tower tower : towers) {
             // Encuentro la mejor posición disponible para la torreta empezando a buscar por los mejores nodos.
-            MapNode bestNode = findBestNode(nodes, placedTowers, tower, map);
-
+              nodes = findBestNode(nodes, placedTowers, tower, map);
+              MapNode bestNode=nodes.remove(0);
             if (bestNode != null) {
                 // Coloco la torreta en la mejor posición y la agrego a la lista de torretas colocadas.
                 tower.setPosition(bestNode.getPosition());
@@ -65,15 +65,16 @@ public class TowerPlacer {
         return !(position.x > mapSize.x - radius) && !(position.y > mapSize.y - radius) && !(position.x < radius) &&  !(position.y < radius);
     }
 
-    private static MapNode findBestNode(ArrayList<MapNode> nodes, ArrayList<Tower> placedTowers, Tower tower, Map map) {
-        for (MapNode node : nodes) {
-            Point2D nodePosition = node.getPosition();
+    private static ArrayList<MapNode> findBestNode(ArrayList<MapNode> nodes, ArrayList<Tower> placedTowers, Tower tower, Map map) {
+        while(!nodes.isEmpty()) {
+            Point2D nodePosition = nodes.get(0).getPosition();
             // Verifico si la posición está dentro de los límites del mapa y no colisiona con torres u obstáculos.
             if (NoOutofBounds(nodePosition, tower.getRadius(), map.getSize()) &&
                     !collidesWithTowers(nodePosition, tower.getRadius(), placedTowers) &&
-                    !collidesWithObstacles(nodePosition, tower.getRadius(), map.getObstacles(),map.getWalkableNodes())) {
-                return node; // Devuelve el primer nodo que cumple con las condiciones.
+                    !collidesWithObstaclesAndWalkables(nodePosition, tower.getRadius(), map.getObstacles(),map.getWalkableNodes())) {
+                return nodes; // Devuelve el array de candidatos con los que ya se han eliminado con el mejor nodo como primero
             }
+            nodes.remove(0);
         }
         return null; // No se encontró ningún nodo adecuado por lo que retorno null.
     }
@@ -87,7 +88,7 @@ public class TowerPlacer {
         return false; //No hay colisión con ninguna torreta existente.
     }
 
-    protected static boolean collidesWithObstacles(Point2D position, float radius, ArrayList<Obstacle> obstacles, ArrayList<MapNode> walkablenodes) {
+    protected static boolean collidesWithObstaclesAndWalkables(Point2D position, float radius, ArrayList<Obstacle> obstacles, ArrayList<MapNode> walkablenodes) {
         Game game = Game.getInstance();
         for (Obstacle obstacle : obstacles) {
             if (collide(position, radius, obstacle.getPosition(), obstacle.getRadius())) {
@@ -96,7 +97,7 @@ public class TowerPlacer {
         }
         for(MapNode celda : walkablenodes){
             if(collide(position,radius, celda.getPosition(),game.getParam(Config.Parameter.ENEMY_RADIUS_MAX))) {
-                return true; // Hay una colisión con al menos un obstáculo existente.
+                return true; // Hay una colisión con al menos un nodo caminable existente.
             }
         }
             return false; //No hay colisión con ningun obstaculo existente.
