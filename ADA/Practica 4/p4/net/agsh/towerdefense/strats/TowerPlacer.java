@@ -19,7 +19,7 @@ public class TowerPlacer {
         float maxRange = Game.getInstance().getParam(Config.Parameter.TOWER_RANGE_MAX);
         int inRangeNodesCount = 0;
 
-        for (MapNode n : Game.getInstance().getMap().getWalkableNodes()) {
+        for (MapNode n : map.getWalkableNodes()) {
             if (node.getPosition().distance(n.getPosition()) < maxRange) {
                 inRangeNodesCount++;
             }
