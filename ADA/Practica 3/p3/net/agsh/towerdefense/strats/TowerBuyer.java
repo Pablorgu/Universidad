@@ -14,8 +14,7 @@ import java.util.Collections;
 /*
     En esta practica se utiliza una estrategia basada en programación dinámica para elegir con un presupuesto limitado en cada ronda la combinación de torretas mas óptima la cual
 consiga que se nos escape el menor numero de goblins posibles dando lugar al score mas bajo. Para poder hacer la TSR(Tabla de subproblemas resueltos) necesitaba crear una funcion
-que me evaluase las torretas objetivamente en función a sus atributos lo que ha dado lugar a la función “Valuetower” que en funcion de estos relativizandolos con respecto
-a su máximo y multiplicandolos por una ponderación asigna un valor objetivo que indica la calidad de esa torreta. Dos problemas que he encontrado a la hora de realizar
+que me evaluase las torretas objetivamente en función a sus atributos lo que ha dado lugar a la función “Valuetower” que en funcion de estos multiplicandolos por una ponderación asigna un valor objetivo que indica la calidad de esa torreta. Dos problemas que he encontrado a la hora de realizar
 la practica ha sido encontrar las ponderaciones correctas, aunque finalmente he concluido que el atributo mas importante es el daño, y en segundo lugar las limitaciones
 que supone que solo haya 18 torretas ya que esto hace que no varíe mucho la puntuación al cambiar las ponderaciones puesto que la diferencia entre una solución óptima
 y una no óptima al elegir 14 torretas de 18 no es lo mismo que al elegir 14 de 200, lo que me ha complicado llegar a la conclusión de que atributos son mas prioritarios,
@@ -23,10 +22,10 @@ incluso he podido apreciar que hay rondas en las que se eligen las 18 torretas y
  */
 public class TowerBuyer {
 
-    private static final float WEIGHT_RANGE = 0.1f;
-    private static final float WEIGHT_DAMAGE = 30.0f;
-    private static final float WEIGHT_COOLDOWN = 0.1f;
-    private static final float WEIGHT_DISPERSION = 0.1f;
+    private static final float WEIGHT_RANGE = 7.88f;
+    private static final float WEIGHT_DAMAGE = 63.738f;
+    private static final float WEIGHT_COOLDOWN = 0.35f;
+    private static final float WEIGHT_DISPERSION = 22.03f;
 
     public static ArrayList<Integer> buyTowers(ArrayList<Tower> towers, float money) {
         // This is just a (bad) example. Replace ALL of this with your own code.
@@ -43,19 +42,6 @@ public class TowerBuyer {
         if (numTowers == 0) {
             return new ArrayList<>();
         }
-
-        //Miro los valores maximos de cada atributo de torretas para luego poder relativizarlos con respecto a estos
-        float maxrange=0;
-        float maxdamage=0;
-        float maxcooldown= 0;
-        float maxdispersion= 0;
-        for(Tower t: towers){
-            if(t.getRange()>maxrange)maxrange=t.getRange();
-            if(t.getDamage()>maxdamage)maxdamage=t.getDamage();
-            if(t.getCooldown()>maxcooldown)maxcooldown=t.getCooldown();
-            if(t.getDispersion()>maxdispersion)maxdispersion=t.getDispersion();
-        }
-
         float[][] dp = new float[numTowers + 1][(int) (money + 1)];
 
         // Lleno la tabla de manera iterativa
@@ -66,7 +52,7 @@ public class TowerBuyer {
                 }else if(i>0 && j<(int)Math.ceil(towers.get(i-1).getCost())){
                     dp[i][j]=dp[i-1][j];
                 } else {
-                    dp[i][j] = Math.max(dp[i-1][j],Valuetower(towers.get(i-1), maxrange,maxdamage,maxcooldown,maxdispersion)+dp[i-1][j-(int)Math.ceil(towers.get(i-1).getCost())]);
+                    dp[i][j] = Math.max(dp[i-1][j],Valuetower(towers.get(i-1))+dp[i-1][j-(int)Math.ceil(towers.get(i-1).getCost())]);
                 }
             }
         }
@@ -82,17 +68,17 @@ public class TowerBuyer {
             i--;
         }
 
-//        Collections.reverse(selected);
+        Collections.reverse(selected);
         return selected;
     }
-    public static float Valuetower(Tower tower, float maxrange, float maxdamage, float maxcooldown, float maxdispersion) {
+    public static float Valuetower(Tower tower) {
 
-        float rangeScore = tower.getRange()/maxrange * WEIGHT_RANGE;
-        float damageScore = tower.getDamage()/maxdamage * WEIGHT_DAMAGE;
-        float cooldownScore = (1 - (tower.getCooldown()/maxcooldown)) * WEIGHT_COOLDOWN; // Invierto el cooldown para que menor tiempo sea mejor
-        float dispersionScore = (1 - (tower.getDispersion()/maxdispersion)) * WEIGHT_DISPERSION; // Invierto la dispersión para que menor dispersión sea mejor
+        float rangeScore = tower.getRange()*WEIGHT_RANGE;
+        float damageScore = tower.getDamage()* WEIGHT_DAMAGE;
+        float cooldownScore = tower.getCooldown()* WEIGHT_COOLDOWN;
+        float dispersionScore = tower.getDispersion()* WEIGHT_DISPERSION;
 
         // Sumo los puntajes ponderados
-        return rangeScore + damageScore + cooldownScore + dispersionScore;
+        return  damageScore -rangeScore+ cooldownScore -dispersionScore;
     }
 }
