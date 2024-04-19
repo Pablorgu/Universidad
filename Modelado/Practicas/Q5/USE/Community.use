@@ -1,0 +1,107 @@
+model Community
+
+class Community
+end
+
+class Clock
+attributes
+NOW: Integer
+end
+
+class Person
+attributes
+birthYear: Integer
+deathYear: Integer
+age: Integer
+isDead: Boolean derive = self.deathYear <> null
+state: State
+stage: Stage
+operations
+    isMarried() : Boolean = self.state = State::Married
+    
+    marriages(): Integer = Marriage.allInstances()
+                     ->select(m | m.endYear = null and (m.husband = self or m.wife = self))->size()
+    
+    
+end
+
+enum Stage {Child, Young, Adult, Elderly, Deceased}
+
+enum State {Single, Married, Divorced, Widowed}
+
+composition Member between 
+Community [1] role community
+Person [*] role person
+end
+
+aggregation Time between
+Community [*] role communityTime
+Clock [1] role clock
+end
+
+associationclass Marriage between
+Person [*] role husband
+Person [*] role wife
+attributes
+startYear: Integer
+endYear: Integer
+end
+
+constraints
+
+context Person 
+inv NoDeathBeforeBirth:
+    self.birthYear < self.deathYear or self.deathYear = null
+
+context Marriage
+inv NoEndBeforeStart:
+    self.startYear < self.endYear or self.endYear = null
+
+context Person
+inv NoDeadMarried:  
+    not (self.state = State::Married and self.stage = Stage::Deceased)
+
+context Person
+inv NotBornInFuture:
+    self.birthYear <= self.community.clock.NOW
+
+context Marriage
+inv NotMarriedInFuture:
+    (self.startYear <= self.husband.community.clock.NOW) and  (self.startYear <= self.wife.community.clock.NOW)
+
+context Marriage
+inv NoDivorceBeforeMarriage:
+    (self.endYear >= self.startYear) or (self.endYear = null)
+
+context Clock
+inv OnlyOneClock:
+    Clock.allInstances()->size() = 1
+
+context Marriage
+inv NoSelfMarriage:
+    self.husband <> self.wife
+
+context Person
+inv Monogamy:
+    let activeMarriages : Set(Marriage) = 
+        Marriage.allInstances()
+            ->select(m | m.endYear = null and (m.husband = self or m.wife = self)) 
+    in
+    activeMarriages->size() <= 1
+
+context Person
+inv ChildrenNotMarried:
+    if self.stage = Stage::Child then
+        let activeMarriages : Set(Marriage) = 
+            Marriage.allInstances()
+                ->select(m | m.endYear = null and (m.husband = self or m.wife = self)) 
+        in
+        activeMarriages->isEmpty()
+    else
+        true
+    endif
+
+
+
+
+

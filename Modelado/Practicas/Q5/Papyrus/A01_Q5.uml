@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_dqkGgHMKEe6ciOdvKHptWQ" name="A01_Q5">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_dth68HMKEe6ciOdvKHptWQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_r1Sf0HMKEe6ciOdvKHptWQ" name="Community"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_JxfYYHMMEe6ciOdvKHptWQ" name="Person" visibility="package">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_nnqJQHPwEe60Q4wUTlrQZA" name="BirthYear">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_tW4V4HPwEe60Q4wUTlrQZA" name="deathYear">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_zewTEHPwEe60Q4wUTlrQZA" name="age">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_4LyC4HPwEe60Q4wUTlrQZA" name="isDead" isDerived="true">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_gBlZoHP5Ee60Q4wUTlrQZA" name="stage" type="_zI7lMHMNEe6ciOdvKHptWQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_pxfNcHP5Ee60Q4wUTlrQZA" name="state" type="_abEkUHMNEe6ciOdvKHptWQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_abEkUHMNEe6ciOdvKHptWQ" name="State" visibility="public">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_WbEE8HPxEe60Q4wUTlrQZA" name="Single"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_XG4CEHPxEe60Q4wUTlrQZA" name="Married"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Xkz7QHPxEe60Q4wUTlrQZA" name="Divorced"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Yh7q0HPxEe60Q4wUTlrQZA" name="Widowed"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_zI7lMHMNEe6ciOdvKHptWQ" name="Stage">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_PaDgUHPxEe60Q4wUTlrQZA" name="Child"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Q9-KIHPxEe60Q4wUTlrQZA" name="Young"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_RvqFwHPxEe60Q4wUTlrQZA" name="Adult"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_SZGrYHPxEe60Q4wUTlrQZA" name="Eldery"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_TJ-usHPxEe60Q4wUTlrQZA" name="Deceased"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iZN5AHPxEe60Q4wUTlrQZA" name="Clock">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_lphMIHPxEe60Q4wUTlrQZA" name="NOW">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_4V1E0HPyEe60Q4wUTlrQZA" visibility="protected" memberEnd="_4V1r4nPyEe60Q4wUTlrQZA _4V2S8nPyEe60Q4wUTlrQZA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4V1r4HPyEe60Q4wUTlrQZA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4V1r4XPyEe60Q4wUTlrQZA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_4V2S8nPyEe60Q4wUTlrQZA" name="community" type="_r1Sf0HMKEe6ciOdvKHptWQ" association="_4V1E0HPyEe60Q4wUTlrQZA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FB3SkHPzEe60Q4wUTlrQZA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FB8yIHPzEe60Q4wUTlrQZA" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_4V1r4nPyEe60Q4wUTlrQZA" name="clock" type="_iZN5AHPxEe60Q4wUTlrQZA" aggregation="shared" association="_4V1E0HPyEe60Q4wUTlrQZA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_tV6lMHPzEe60Q4wUTlrQZA" memberEnd="_tV6lM3PzEe60Q4wUTlrQZA _tV6lNnPzEe60Q4wUTlrQZA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tV6lMXPzEe60Q4wUTlrQZA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_tV6lMnPzEe60Q4wUTlrQZA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_tV6lNnPzEe60Q4wUTlrQZA" name="community" type="_r1Sf0HMKEe6ciOdvKHptWQ" association="_tV6lMHPzEe60Q4wUTlrQZA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_tV6lM3PzEe60Q4wUTlrQZA" name="person" type="_JxfYYHMMEe6ciOdvKHptWQ" aggregation="composite" association="_tV6lMHPzEe60Q4wUTlrQZA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EpJbIHP0Ee60Q4wUTlrQZA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Epup8HP0Ee60Q4wUTlrQZA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:AssociationClass" xmi:id="_xczIwHP4Ee60Q4wUTlrQZA" name="Marriage" memberEnd="_xc0W4nP4Ee60Q4wUTlrQZA _xc098HP4Ee60Q4wUTlrQZA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xc0W4HP4Ee60Q4wUTlrQZA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xc0W4XP4Ee60Q4wUTlrQZA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_CvoigHP5Ee60Q4wUTlrQZA" name="startYear">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_G1NQwHP5Ee60Q4wUTlrQZA" name="endYear" visibility="public">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_xc0W4nP4Ee60Q4wUTlrQZA" name="wife" type="_JxfYYHMMEe6ciOdvKHptWQ" association="_xczIwHP4Ee60Q4wUTlrQZA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Xa7F0HP5Ee60Q4wUTlrQZA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XbEPwHP5Ee60Q4wUTlrQZA" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_xc098HP4Ee60Q4wUTlrQZA" name="husband" type="_JxfYYHMMEe6ciOdvKHptWQ" association="_xczIwHP4Ee60Q4wUTlrQZA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XIeD4HP5Ee60Q4wUTlrQZA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XIuikHP5Ee60Q4wUTlrQZA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,45 @@
+## Ejecuciones
+
+### Ejecucion 1
+
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+check
+
+### Ejecucion 2
+
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Tren.broken()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Tren1.repair()
+!Clock1.tick()
+!Clock1.tick()
+!Tren2.broken()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Tren2.repair()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+!Clock1.tick()
+check

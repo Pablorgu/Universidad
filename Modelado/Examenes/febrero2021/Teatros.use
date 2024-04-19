@@ -1,0 +1,90 @@
+model Teatros
+enum Sesion {tarde, noche}
+
+class Teatro
+operations
+obras():Set(Obra) = self.representacion->collect(obra)->asSet()
+obrasTemp(t:Temporada):Set(Obra) = self.representacion->select(r| r.temporada=t)->collect(obra)->asSet()
+end
+
+class Obra
+attributes
+titulo:String
+end
+
+class Persona
+end
+
+class Actor<Persona
+end
+
+class Autor<Persona
+end
+
+class Temporada
+end
+
+class Personaje
+end
+
+class Papel
+end
+
+class Representacion
+attributes
+Dia:Integer
+Sesion:Sesion
+constraints
+ inv diaValido: Dia>=0
+end
+
+association TeatroRepresentacion between
+Teatro [1] role teatro
+Representacion [*] role representacion
+end
+
+aggregation PersonajesRepresentacion between
+Obra [1]
+Personaje [*]
+end
+
+aggregation AutorObra between
+Obra[*]
+Autor [1]
+end
+
+association TemporadaRepresentacion between
+Temporada [1] role temporada
+Representacion [*] role representacion
+end
+
+association PapelPersonaje between
+Papel [1]
+Personaje [1]
+end
+
+association RepresentacionPapel between
+Representacion [1] role representacion
+Papel[1] role papel
+end
+
+association PapelActor between
+Papel [1..*] role papel
+Actor [1] role actor
+end
+
+association ObraRepresentacion between
+Obra [1]
+Representacion [*]
+end
+
+constraints
+
+context Actor inv NoDosRepresentacionesALavez:
+self.papel->forAll(p1,p2 | p1<>p2 implies (p1.representacion.Dia<>p2.representacion.Dia)or(p1.representacion.Sesion<>p2.representacion.Sesion))
+
+context Actor inv VariosTeatrosSinRepetir:
+self.papel.representacion->forAll(p1,p2 | p1<>p2 implies p1.teatro <> p2.teatro)
+
+context Teatro inv NomismaObraMismoDia:
+Representacion.allInstances->forAll(r1,r2 | r1.obra=r2.obra implies (r1.teatro<>r2.teatro implies r1.Dia<>r2.Dia))

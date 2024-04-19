@@ -1,0 +1,211 @@
+model redMetropolitana
+
+class Clock
+attributes
+NOW : Integer
+operations
+tick()
+    begin
+        self.NOW := self.NOW + 1;
+        for t in Tren.allInstances() do t.avanza() end;
+    end
+post : self.NOW = self.NOW@pre + 1
+end
+
+class Linea
+attributes
+Nombre : String
+end
+
+class Estacion
+attributes
+Nombre : String 
+end
+
+class Tren
+attributes
+estaListo : Boolean init : false
+estaRoto : Boolean init : false
+Direccion : Boolean
+operations
+vaciaSiguienteVia() : Boolean = self.estacion.viaDestino -> forAll(x | x.segmento.lineaS -> select(y
+    | y = self.lineaT) -> size = 1 and x.Direccion = self.Direccion implies x.tren -> size() = 0)
+avanza()
+    begin
+        if(self.estacion -> size() = 1) then self.avanzaDesdeEstacion();
+        else
+            self.avanzaHaciaEstacion();
+        end
+    end
+    pre puedeAvanza : self.via <> null xor self.estacion <> null
+    post avanzaDesdeEstacion : self.estacion@pre -> size() = 1 implies self.via@pre -> size() = 0
+    post avanzaDesdeVia : self.via@pre -> size() = 1 implies self.estacion@pre -> size() = 0
+avanzaDesdeEstacion()
+    begin
+        if(not self.estaRoto) then
+            if (self.estaListo) then
+                self.avanzaHaciaVia();
+            else
+                self.estaListo := true;
+            end
+        end
+    end
+    pre puedeAvanzaDesdeEstacion : self.estacion -> size() = 1
+    post : not self.estaRoto@pre and not self.estaListo@pre implies self.estaListo
+avanzaHaciaVia()
+    begin
+        if(self.vaciaSiguienteVia()) then
+            insert (self,self.estacion.viaDestino -> select(x | x.segmento.lineaS -> select(y | y =
+            self.lineaT) -> size = 1 and x.Direccion = self.Direccion) -> asSequence() -> first()) into Circulacion;
+            delete (self,self.estacion) from Parada;
+            self.estaListo := false;
+        end
+    end
+    pre puedeAvanzaHaciaVia : not self.estaRoto and self.estaListo
+    post : self.estacion.viaDestino@pre -> forAll(x | x.segmento.lineaS@pre -> select(y | y =
+        self.lineaT@pre) -> size = 1 and x.Direccion@pre = self.Direccion@pre implies x.tren@pre -> size() = 0) implies
+        (self.via -> size() = 1 and self.estacion -> size() = 0 and not self.estaListo)
+avanzaHaciaEstacion()
+    begin
+        if(self.via.estacionDestino.viaDestino -> select(x | x.segmento.lineaS -> select(y | y =
+            self.lineaT) -> size() = 1) -> size() = 1) then 
+            self.setDireccion();
+        end;
+        insert (self, self.via.estacionDestino) into Parada;
+        delete (self, self.via) from Circulacion;
+    end
+    pre puedeAvanzaHaciaEstacion : self.via -> size() = 1
+    post : self.via -> size() = 0 and self.estacion -> size() = 1
+setDireccion()
+    begin
+        if(self.Direccion) then self.Direccion := false;
+        else self.Direccion := true;
+        end
+    end
+    pre puedeSetDireccion : self.via.estacionDestino.viaDestino -> select(x | x.segmento.lineaS ->
+            select(y | y = self.lineaT) -> size() = 1) -> size() = 1
+    post : if(self.Direccion@pre) then not self.Direccion else self.Direccion endif
+roto()
+    begin
+        self.estaRoto := true;
+    end
+    pre noRoto : not self.estaRoto
+    post roto : self.estaRoto
+reparar()
+    begin
+    self.estaRoto := false;
+    end
+    pre noReparado : self.estaRoto and self.estacion -> size() = 1
+    post reparado : not self.estaRoto
+statemachines
+    psm Listo
+    states
+        s : initial
+        RecienLLegado
+        Parado [self.estacion -> size() = 1]
+        Circulando [self.via -> size() = 1]
+    transitions
+        s -> RecienLLegado
+        RecienLLegado -> RecienLLegado { [self.estaRoto]avanza()}
+        RecienLLegado -> Parado {[not self.estaRoto and not self.estaListo]avanza()}
+        Parado -> Parado {[self.estaRoto or not self.vaciaSiguienteVia()]avanza()}
+        Parado -> Circulando {[self.estaListo and not self.estaRoto and self.vaciaSiguienteVia()]avanza()}
+        Circulando -> RecienLLegado {[self.estacion -> size() = 0] avanza()}
+    end
+    psm Roto
+    states
+        s : initial
+        Trabajando [not self.estaRoto]
+        Roto [self.estaRoto]
+    transitions
+        s -> Trabajando
+        Trabajando -> Trabajando {[not self.estaRoto]avanza()}
+        Trabajando -> Roto {[not self.estaRoto] roto()}
+        Roto -> Roto {[self.estaRoto]avanza()}
+        Roto -> Trabajando {[self.estaRoto] reparar()}
+    end
+end
+
+class Via
+attributes
+Direccion : Boolean
+end
+
+class Segmento 
+attributes
+Nombre: String
+end
+
+aggregation Pertenece between
+Linea [1..*] role lineaS
+Segmento [1..*] role segmentos
+end
+
+composition Vias between
+Segmento [1] role segmento
+Via [2] role vias
+end
+
+association Circulacion between
+Tren [0..1] role tren
+Via [1] role via
+end
+
+association Parada between
+Tren [*] role tren
+Estacion [0..1] role estacion
+end
+
+association Ruta between
+Tren [*] role tren
+Linea [1] role lineaT
+end
+
+association Time between
+Clock [1] role clock
+Linea [1..*] role lineaC
+end
+
+association Destino between
+Estacion [1] role estacionOrigen
+Via [1..*] role viaDestino
+end
+
+association Origen between
+Estacion [1] role estacionDestino
+Via [1..*] role viaOrigen
+end
+
+
+constraints
+
+context Clock
+inv OnlyOneClock:
+    Clock.allInstances()->size() = 1
+
+context Segmento
+inv NoConectadaConsigoMisma:
+    self.vias -> forAll(x | x.estacionDestino <> x.estacionOrigen)   
+
+context Segmento
+inv ViaBienDefinida:
+self.vias -> forAll(x | x.estacionDestino.viaDestino->excludes(x) and x.estacionOrigen.viaOrigen->excludes(x))   
+
+context Linea 
+inv DiferentesLineas:
+    Linea.allInstances() -> excluding(self) -> forAll(x | x.segmentos <> self.segmentos)
+
+
+context Segmento 
+inv DiferenteDireccionVia:
+    self.vias -> forAll(x | 
+        self.vias -> forAll(y | y <> x implies x.Direccion <> y.Direccion))
+
+context Via
+inv UnSoloTrenEnVia:
+    self.tren->size() <= 1
+
+context Tren
+inv EstacionXORVia:
+    (self.estacion -> isEmpty() or self.via -> isEmpty()) and
+    not (self.estacion -> isEmpty() and self.via -> isEmpty())

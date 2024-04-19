@@ -1,0 +1,149 @@
+model CursosUniversidades
+
+abstract class Titulacion
+attributes
+nombre: String
+end
+
+class Asignatura
+attributes
+creditos: Real
+end
+
+class Universidad
+attributes
+nombre: String
+end
+
+class Titulo 
+attributes
+nombreUniversidad: String
+nombreTitulacion: String
+end
+
+class Persona
+end
+
+class ImparticionAsignatura
+end
+
+class Curso
+attributes
+anio: String
+end
+
+class Grado < Titulacion
+end
+
+class Master < Titulacion
+end
+
+association TitulacionAsignatura between
+Titulacion [*] role titulacion_que_la_contiene
+Asignatura [*] role asignatura_que_contiene
+end
+
+composition TitulacionUniversidad between
+Universidad [*] role universidad_en_que_se_imparte
+Titulacion [*] role titulacion_de_universidad
+end
+
+associationclass Matricula between
+Persona [*] role alumno
+ImparticionAsignatura [*] role imparticion_asignaturas
+attributes
+calificacion: Real
+aprobada: Boolean derive: self.calificacion>=5
+end
+
+association Docencia between
+Persona [1] role Profesor
+ImparticionAsignatura [*] role docencia
+end
+
+association CursoImpartido between
+ImparticionAsignatura [*] role asignatura_cursada
+Curso [1] role curso_en_el_que_se_imparte
+end
+
+association PersonaTitulo between
+Persona [*] role Persona_con_Titulo
+Titulo [*] role Titulo_que_tiene
+end
+
+association TituloCurso between
+Titulo [*] role titulo
+Curso [1] role curso
+end
+
+association AsignaturaCurso between
+Asignatura [1] role asignatura
+ImparticionAsignatura [*] role asignatura_que_se_imparte
+end
+
+composition Certificado between
+Titulacion [1] role titulacion_certificada
+Titulo [*] role titulo_de_titulacion
+end
+
+constraints
+
+--Cada profesor no puede dar mas de 4 asignaturas cada curso
+context Persona
+inv NoMasDe4AsignaturasProfesorCurso:
+   Curso.allInstances->forAll (c |
+        Persona.allInstances->forAll(p|p.docencia->select(ia | ia.curso_en_el_que_se_imparte=c)->size()<=4))
+
+--La nota solo puede tener un valor entre 0 y 10
+context Matricula 
+inv NotasCorrectas:
+   self.calificacion <> null implies (self.calificacion >= 0 and self.calificacion<=10)
+
+-- Un alumno no puede tener más de 3 matrículas por asignatura
+context Persona
+inv MaximoMatriculasPorAsignatura:
+   Matricula.allInstances->select(m | m.alumno = self)->isUnique(asig | asig.imparticion_asignaturas)
+   and
+   Matricula.allInstances->select(m | m.alumno = self)->collect(asig | asig.imparticion_asignaturas)
+   ->forAll(asignatura |
+      Matricula.allInstances->select(m | m.alumno = self and m.imparticion_asignaturas = asignatura)
+      ->size() <= 3)
+
+-- Un alumno solo puede aprobar una asignatura una vez, no pudiendo matricularse de asignaturas que ya haya aprobado
+context Persona inv SoloUnAprobado:
+    Matricula.allInstances->select(m | m.alumno = self and m.aprobada = true)
+    ->isUnique(asig | asig.imparticion_asignaturas)
+
+--Dos imparticiones de una asignatura no pueden coincidir en un mismo año
+context Asignatura inv UnaImparticionPorCurso:
+   ImparticionAsignatura.allInstances->forAll(i1,i2|i1<>i2 implies i1.curso_en_el_que_se_imparte.anio<>i2.curso_en_el_que_se_imparte.anio)
+
+--Todos los cursos, salvo el ultimo, deben tener todas sus asignaturas evaluadas
+context Curso
+inv TodasLasAsignaturasEvaluadasExceptoUltimo:
+    let cursosOrdenados = Curso.allInstances->sortedBy(anio) in
+    let ultimoCurso = cursosOrdenados->last() in
+    cursosOrdenados->excluding(ultimoCurso)->forAll(c |
+        c.asignatura_cursada.matricula->forAll(m | m.calificacion <> null)
+    )
+
+--Los profesores no pueden matricularse en aquellas asignaturas que imparten ese curso, aunque sí en otras
+context Persona inv NoSeDaClaseASiMismo:
+   self.docencia->forAll(i|i.alumno->excludes(self))
+
+--Los cursos comienzan en años distintos
+context Curso inv comienzanAniosDistintos:
+   Curso.allInstances->forAll(c1,c2|c1<>c2 implies c1.anio<>c2.anio)
+
+--El titulo tiene que tener los creditos aprobados y la fecha el titulo tiene que ser posterior o igual a las de aprobar las asignaturas correspondientes
+context Titulo
+inv TituloValido:
+    -- El título debe tener los créditos aprobados
+    if self.titulacion_certificada.oclIsTypeOf(Grado) and self.titulacion_certificada.asignatura_que_contiene.cr
+    and
+    -- La fecha del título debe ser posterior o igual a la fecha de aprobar las asignaturas correspondientes
+    self.fecha >= self.PersonaTitulo.alumno.matricula->select(m | m.aprobada = true)->
+    collect(matricula | matricula.imparticion_asignaturas.curso_en_el_que_se_imparte.anio)->max()
+
+
+

@@ -1,21 +1,26 @@
 import javax.management.InstanceNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
-class Main {
-    public int maxCoins(int[] piles) {
-        int coinsperperson=piles.length/3;
-        int res = 0;
-        int contador=0;
-        Arrays.sort(piles);
-        for(int i = (piles.length-1); i>=0; i--){
-            if((contador%2)==1 && (contador/2)<coinsperperson){
-                res+=piles[i];
-                ++contador;
+import java.nio.channels.FileChannel;
+import java.util.*;
+class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int n:arr) {
+            int ocurrences;
+            if(!map.containsKey(n)){
+                ocurrences=1;
+            }else {
+                ocurrences=map.get(n)+1;
             }
+            map.put(n,ocurrences);
         }
-        return res;
+        Set<Integer> set = new HashSet<>();
+        for(Map.Entry<Integer,Integer> me:map.entrySet()){
+            set.add(me.getValue());
+        }
+        if(map.size()==set.size()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

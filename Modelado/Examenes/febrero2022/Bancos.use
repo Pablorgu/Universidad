@@ -1,0 +1,206 @@
+model Bancos
+
+class Banco
+attributes
+nombre:String
+end
+
+class Sucursal < Empresa
+attributes
+nombreSucursal:String
+operations
+abrirCuentaDeCredito(p:Cliente):Credito
+begin
+    declare cc:Credito;
+    cc:=new Credito();
+    insert(self,cc) into CuentaEnSucursal;
+    insert(p,cc) into ClienteCuenta;
+    result:=cc;
+end
+abrirCuentaNormal(p:Cliente):Debito
+begin
+    declare cd:Debito;
+    cd:=new Debito();
+    insert(self,cd) into CuentaEnSucursal;
+    insert(p,cd) into ClienteCuenta;
+    result:=cd;
+end
+cambioLimite(c:Credito,nuevoLimite:Real):Boolean
+begin
+    declare autorizado:Boolean;
+    result:=false;
+    autorizado := if self.superior->isEmpty() then self.autorizarCambioLimite(c, nuevoLimite)
+    else
+        self.superior.autorizarCambioLimite(c, nuevoLimite)
+    endif;
+    if autorizado then
+        c.limite:=nuevoLimite;
+        result:=true;
+    end
+end
+pre CuentaSubordinada: c.sucursal=self
+
+autorizarCambioLimite(c:Credito, nuevoLimite:Real):Boolean =
+(nuevoLimite <=c.limite) or ((c.limite*1.1 <=nuevoLimite) and (c.saldo >= nuevoLimite))
+end
+
+class Ciudad
+attributes
+nombre:String
+end
+
+abstract class Cliente
+end
+
+class Persona < Cliente
+attributes
+nombre: String
+end
+
+class Empresa < Cliente
+attributes
+nombreEmpresa: String
+end
+
+abstract class Cuenta
+attributes
+iban:Integer
+saldo:Real init:0.0
+operations
+conocerSaldo():Real
+begin
+result:=self.saldo;
+end
+ingresar(r:Real)
+begin
+self.saldo := self.saldo+r;
+end
+pre IngresoPositivo: r>=0
+post IngresoOk: saldo = saldo@pre + r
+retiradaEfectivo(r:Real)
+begin
+self.saldo :=self.saldo-r;
+end
+pre IngresoPositivo: r>=0
+post IngresoOk: saldo = saldo@pre - r
+transferir(destino:Cuenta, r:Real)
+begin
+declare sucursalOrigen:Sucursal, sucursalDestino:Sucursal, comisionOrigen:Real, comisionDestino:Real;
+comisionOrigen:=r*0.01;
+comisionDestino:=r*0.01;
+sucursalOrigen:=self.sucursal;
+sucursalDestino:=destino.sucursal;
+if sucursalOrigen.banco = sucursalDestino.banco then
+ comisionOrigen:=0.0; comisionDestino:=0.0;
+else
+if sucursalOrigen.banco.empresaVIP->includes(self.propietario) or self.sucursalPoseedora<>null
+then
+comisionOrigen:=0.0;
+end;
+if sucursalDestino.banco.empresaVIP->includes(self.propietario) or destino.sucursalPoseedora<>null
+then
+comisionDestino := 0.0;
+end;
+sucursalOrigen.cuentaQuePosee.ingresar(comisionOrigen);
+sucursalDestino.cuentaQuePosee.ingresar(comisionDestino);
+end;
+self.saldo := self.saldo - r;
+destino.ingresar(r-comisionDestino-comisionOrigen);
+end
+pre transferenciaValida: r>=0
+post TransferOk: saldo = saldo@pre -r
+end
+
+class Debito < Cuenta
+end
+
+class Credito < Cuenta
+attributes
+limite:Real init:10
+end
+
+class Calendario
+operations
+pasaUnAnio()
+begin
+for s in self.bancocal.sucursal do
+    for c in s.cuentaEnSucursal->excluding(s.cuentaQuePosee) do
+        if not c.sucursal.banco.empresaVIP->includes(c.propietario) then 
+            if c.saldo>=0then
+                c.transferir(s.cuentaQuePosee, c.saldo*0.01)
+            else
+                c.transferir(s.cuentaQuePosee, c.oclAsType(Credito).limite*0.01)
+            end
+        end
+    end
+end
+end
+end
+
+association Jerarquia between
+Sucursal[0..1] role superior
+Sucursal[*] role inferiores
+end
+
+association CuentaVIP between
+Banco [*] role bancoVIP
+Empresa [*] role empresaVIP derive = 
+    Empresa.allInstances()->select(e|e.cuenta->exists(c|c.saldo>=1000000 and c.sucursal.banco = self))
+end
+
+composition BancoSucursal between
+Banco [1] role banco
+Sucursal [1..*] role sucursal
+end
+
+association CiudadSucursal between
+Ciudad [1] role ciudad
+Sucursal [*]role sucursal
+end
+
+association ClienteCuenta between
+Cliente [1] role propietario
+Cuenta [*] role cuenta
+end
+
+association CuentaEnSucursal between
+Sucursal [0..1] role sucursal
+Cuenta [1..*] role cuentaEnSucursal
+end
+
+association CuentaDeSucursal between
+Sucursal [1] role sucursalPoseedora
+Cuenta [1] role cuentaQuePosee
+end
+
+association CalendarioBanco between
+Calendario [1] role calendario
+Banco [*] role bancocal
+end
+
+constraints
+--Maximo tres sucursales por Ciudad
+context Banco
+inv MaximoTresSucursalesPorCiudad:
+self.sucursal.ciudad->forAll(c|c.sucursal->select(banco=self)->size()<=3)
+
+--Saldo de cuenta normal siempre positivo
+context Debito inv NoSaldoNegativo:
+self.saldo>=0
+
+--Saldo cuenta de credito
+context Credito inv SaldoCuentaDebito:
+self.saldo >= 0 - self.limite
+
+--Comprueba que toda sucursal tenga una cuenta propia
+context Sucursal inv CuentaPropia:
+self.cuentaEnSucursal->includes(cuentaQuePosee)
+
+--La Jerarquia funciona
+context Sucursal inv JerarquiaOk:
+self.inferiores -> closure(inferiores)->excludes(self)
+
+--Sucursales en jerarquia son del mismobanco
+context Sucursal inv JerarquiaBancos:
+self.inferiores ->forAll(s1,s2|s1.banco=s2.banco)
+
