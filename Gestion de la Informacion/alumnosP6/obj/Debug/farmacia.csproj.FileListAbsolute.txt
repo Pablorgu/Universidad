@@ -1,0 +1,13 @@
+C:\Users\alumno\Downloads\alumnosP6\bin\Debug\farmacia.exe.config
+C:\Users\alumno\Downloads\alumnosP6\bin\Debug\farmacia.exe
+C:\Users\alumno\Downloads\alumnosP6\bin\Debug\farmacia.pdb
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.csprojResolveAssemblyReference.cache
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.FLogin.resources
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.FPacientes.resources
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.FRecetas.resources
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.FRoles.resources
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.FUsuarios.resources
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.Properties.Resources.resources
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.csproj.GenerateResource.Cache
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.exe
+C:\Users\alumno\Downloads\alumnosP6\obj\Debug\farmacia.pdb
